@@ -34,7 +34,7 @@ function ImageGallery() {
   };
 
   return (
-    <div className="image-gallery">
+    <div className="image-gallery p-2 pt-0 md:p-4">
       <br />
       <br />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

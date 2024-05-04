@@ -4,7 +4,7 @@ import Logo from "../assets/gallerylogo.jpg";
 
 function Navbar() {
   return (
-    <nav className="flex items-center  p-2 h-14 bg-gradient-to-r from-amber-800 via-slate-200 to-amber-800 justify-center">
+    <nav className="flex items-center  p-2 h-14 bg-gradient-to-r from-amber-800 via-yellow-200 to-amber-800 justify-center">
       <img
         src={Logo}
         alt="LOGO"
@@ -15,7 +15,7 @@ function Navbar() {
         activeClassName="text-white"
         className="text-xl text-white hover:text-gray-200"
       >
-        <h1 className="font-extrabold sm:text-5xl text-3xl text-rose-900 ">
+        <h1 className="font-extrabold sm:text-5xl text-3xl font-serif  text-rose-900 ">
           IMAGE GALLERY
         </h1>
       </NavLink>
