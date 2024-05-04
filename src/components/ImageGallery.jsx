@@ -1,40 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import axios from "axios";
 
 function ImageGallery() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const limit = 72;
-  const uniqueIds = new Set();
+  const limit = 8;
+  const uniqueIdsRef = useRef(new Set());
 
-  useEffect(() => {
-    fetchImages();
-  }, [page]);
-
-  const fetchImages = async () => {
+  const fetchImages = useCallback(async () => {
     setLoading(true);
     try {
       const response = await axios.get(
         `https://picsum.photos/v2/list?page=${page}&limit=${limit}`
       );
       const newImages = response.data.filter(
-        (image) => !uniqueIds.has(image.id)
+        (image) => !uniqueIdsRef.current.has(image.id)
       );
-      newImages.forEach((image) => uniqueIds.add(image.id));
+      newImages.forEach((image) => uniqueIdsRef.current.add(image.id));
       setImages((prevImages) => [...prevImages, ...newImages]);
     } catch (error) {
       console.error("Error fetching images:", error);
     }
     setLoading(false);
-  };
+  }, [page]);
+
+  useEffect(() => {
+    fetchImages();
+  }, [fetchImages]);
 
   const loadMore = () => {
     setPage(page + 1);
   };
 
   return (
-    <div className="image-gallery p-3">
+    <div className="image-gallery">
       <br />
       <br />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
