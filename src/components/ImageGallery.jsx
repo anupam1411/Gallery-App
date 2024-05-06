@@ -5,7 +5,7 @@ function ImageGallery() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const limit = 64;
+  const limit = 16;
   const uniqueIdsRef = useRef(new Set());
 
   const fetchImages = useCallback(async () => {
